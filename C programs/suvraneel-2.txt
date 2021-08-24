@@ -1,0 +1,95 @@
+/******************************************************************************
+Suvraneel Bhuin
+CSE-424
+T91/CSE/194032
+
+Assignment - 2 :
+Write a program to multiply two integers a and b of length m and n
+respectively. Take m, n, a and b as input from user. Use dynamic memory
+allocation for storing those big integers.
+*******************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{   
+    int m, n, i, j;
+    char *a, *b;                            //character array for detecting digits separately
+    int *digit;                             //integer array for output
+    
+    printf("Enter the number of digits of a & b respectively:\t");
+    scanf("%d %d", &m, &n);
+    
+    //dynamic allocation
+    a = (char *)malloc(1+m*sizeof(char));           //+1 so that final carry isn't dropped
+    b = (char *)malloc(1+n*sizeof(char));
+    digit = (int *)malloc(1+(m+n)*sizeof(int));
+    
+    printf("\nEnter the %d-digit number a:\t", m);
+    
+    for(i= 0; i<= m; i++)                       //scan BIG integer a as array
+        scanf("%c", &a[i]);
+    
+    printf("\nNow enter the %d-digit number b:\t", n);
+    
+    for(i= 0; i<= n; i++)                       //scan BIG integer b as array
+        scanf("%c", &b[i]);
+    
+    printf("\nThe product of numbers a = ");
+    for(i= 1; i<= m; i++)
+        printf("%d", a[i]-'0');                 //-'0' used for char to int conversion
+    printf(" and b = ");
+    for(j= 1; j<= n; j++)
+        printf("%d", b[j]-'0');
+    printf(" is equal to ");
+    a[0] = '0';                         //setting 1st digit as 0
+    b[0] = '0';                         //so that product carry isn't lost
+    for(j=n; j>=0; j--){
+        int carry = 0;                  //for each new j, initially carry = 0
+        int k = n-j ;                   //to left-shift the next row digits each time j changes
+        for(i=m; i>=0; i--){
+            digit[k] += ((a[i]-'0') * (b[j]-'0') + carry)%10 ;
+            carry = ((a[i]-'0') * (b[j]-'0') + carry)/10 ;          //product carry
+            int sumcarry = digit[k]/10;                             //sum carry
+            digit[k] = digit[k]%10;
+            k++;
+            digit[k] += sumcarry;           //adding the sum carry to digit in next higher place
+        }
+    }
+    
+    for(int k=m+n-1; k>= 0; k--)            //printing output from integer array in reverse order
+        printf("%d", digit[k]);
+    
+    free(a);                                            //free all memory
+    free(b);
+    free(digit);
+    return 0;
+}  
+
+
+/*
+Sample Input 1:
+5 10
+98765
+9876543210
+
+Output:
+Enter the number of digits of a & b respectively:	
+Enter the 5-digit number a:	
+Now enter the 10-digit number b:	
+The product of numbers a = 98765 and b = 9876543210 is equal to 975456790135650
+
+
+
+Sample Input 2:
+5 3
+12345
+678
+
+Output:
+Enter the number of digits of a & b respectively:	
+Enter the 5-digit number a:	
+Now enter the 3-digit number b:	
+The product of numbers a = 12345 and b = 678 is equal to 08369910
+*/
+

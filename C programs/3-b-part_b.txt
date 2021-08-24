@@ -1,0 +1,20 @@
+Output file for Assignment-3b part (b)
+(Minimum and maximum average values have also been indicated in brackets 
+alongside the cities for each parameter.)
+
+
+		Min				Max
+
+PM2.5:		Mumbai(13.74)			Delhi(117.08)
+PM10:		Chennai(9.45)			Delhi(223.89)
+NO:		Shillong(0.74)			Kochi(70.89)
+NO2:		Aizawl(0.39)			Delhi(50.73)
+NOx:		Shillong(0.90)			Kochi(68.41)
+NH3:		Gurugram(1.85)			Chennai(48.86)
+CO:		Shillong(0.21)			Ahmedabad(15.47)
+SO2:		Ernakulam(3.11)			Ahmedabad(37.65)
+O3:		Aizawl(3.41)			Bhopal(57.99)
+Benzene:	Coimbatore(0.01)		Shillong(34.34)
+Toluene:	Coimbatore(0.04)		Shillong(34.42)
+Xylene:		Ernakulam(0.15)			Amritsar(6.07)
+AQI:		Aizawl(34)			Ahmedabad(300)
